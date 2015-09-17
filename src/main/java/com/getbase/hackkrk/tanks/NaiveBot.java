@@ -18,8 +18,24 @@ public class NaiveBot {
         new NaiveBot().run();
     }
 
+    public String[] getConfiguration() {
+        switch(System.getProperty("player")) {
+            case "Master":
+                return new String[] {"http://10.12.202.141:9999", "master", "SensibleIvoryPeafowlBat"};
+            case "Michal":
+                return new String[] {"http://10.12.202.144:9999", "more1", "ReasonableFloralWhiteSwallowDotterel"};
+            case "Bartosz":
+                return null;
+            case "Jacek":
+                return null;
+        }
+
+        return new String[] {"http://10.12.202.141:9999", "master", "SensibleIvoryPeafowlBat"};
+    }
+
     public void run() throws Exception {
-        TanksClient client = new TanksClient("http://10.12.202.141:9999", "master", "SensibleIvoryPeafowlBat");
+        String data[] = getConfiguration();
+        TanksClient client = new TanksClient(data[0], data[1], data[2]);
 
         while (true) {
             log.info("Waiting for the next game...");
