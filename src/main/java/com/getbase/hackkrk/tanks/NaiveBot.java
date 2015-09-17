@@ -19,7 +19,7 @@ public class NaiveBot {
     }
 
     public void run() throws Exception {
-        TanksClient client = new TanksClient("http://localhost:9999", "main", "DisinterestedCrimsonGazelleDuck");
+        TanksClient client = new TanksClient("http://10.12.202.141:9999", "master", "SensibleIvoryPeafowlBat");
 
         while (true) {
             log.info("Waiting for the next game...");
