@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class UtilsClass {
 
-    public static String TANK_NAME = "brickKiller";
+    public static String TANK_NAME = "killerBrick";
 
     public Tank getMyTank(List<Tank> tanks) throws TankNotFoundException {
         for(Tank tank: tanks) {

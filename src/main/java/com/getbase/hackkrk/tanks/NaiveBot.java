@@ -2,17 +2,14 @@ package com.getbase.hackkrk.tanks;
 
 import java.util.Random;
 
+import com.getbase.hackkrk.tanks.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.getbase.hackkrk.tanks.api.Command;
-import com.getbase.hackkrk.tanks.api.GameSetup;
-import com.getbase.hackkrk.tanks.api.TanksClient;
-import com.getbase.hackkrk.tanks.api.TurnResult;
 
 public class NaiveBot {
     private static final Logger log = LoggerFactory.getLogger(NaiveBot.class);
     private Random rand = new Random();
+    private TacticalMoves stratey = new MichalCommander();
 
     public static void main(String... args) throws Exception {
         new NaiveBot().run();
@@ -52,8 +49,9 @@ public class NaiveBot {
 
     private void playGame(TanksClient client) {
         boolean gameFinished = false;
+        TurnResult result = null;
         while (!gameFinished) {
-            TurnResult result = client.submitMove(generateCommand());
+            result = client.submitMove(stratey.generateCommand(result));
             gameFinished = result.last;
         }
     }
