@@ -34,7 +34,6 @@ public class NaiveBot {
         boolean gameFinished = false;
         while (!gameFinished) {
             TurnResult result = client.submitMove(generateCommand());
-
             gameFinished = result.last;
         }
     }
