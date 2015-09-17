@@ -23,10 +23,14 @@ public class NaiveBot {
 
         while (true) {
             log.info("Waiting for the next game...");
-            GameSetup gameSetup = client.getMyGameSetup();
-            log.info("Playing {}", gameSetup);
+            try {
+                GameSetup gameSetup = client.getMyGameSetup();
+                log.info("Playing {}", gameSetup);
 
-            playGame(client);
+                playGame(client);
+            } catch (Exception e) {
+                System.out.println("Error! " + e.getCause());
+            }
         }
     }
 
