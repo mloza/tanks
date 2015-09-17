@@ -22,7 +22,7 @@ public class NaiveBot {
             case "Michal":
                 return new String[] {"http://10.12.202.144:9999", "more1", "ReasonableFloralWhiteSwallowDotterel"};
             case "Bartosz":
-                return null;
+                return new String[] {"http://10.12.202.144:9999", "more1", "BrilliantGrayLionCheetah"};
             case "Jacek":
                 return null;
         }
