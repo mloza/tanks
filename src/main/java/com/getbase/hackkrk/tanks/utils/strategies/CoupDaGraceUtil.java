@@ -21,7 +21,11 @@ public class CoupDaGraceUtil {
         memory = new LinkedHashMap<>();
     }
 
-    public Command checkPossilbeCoupDaGrace(TurnResult result){
+    public void reset(){
+        memory.clear();
+    }
+    public Command[] checkPossilbeCoupDaGrace(TurnResult result){
+        Command[] commands = new Command[2];
         if(memory.size() == 0){
             for(Tank tank : result.tanks){
                 memory.put(tank,1);
@@ -31,7 +35,7 @@ public class CoupDaGraceUtil {
 
         for(Tank tank : result.tanks){
             for(Tank keyTank: memory.keySet()){
-                if (tank.name.equals(keyTank.name) && !tank.name.contentEquals(UtilsClass.TANK_NAME)){
+                if (tank.name.equals(keyTank.name) && !tank.name.equals(UtilsClass.TANK_NAME)){
                     if(tank.position.equals(keyTank.position)){
                     memory.replace(keyTank,memory.get(keyTank) + 1);
                     } else {
@@ -43,12 +47,18 @@ public class CoupDaGraceUtil {
 
         for(Tank candidate : memory.keySet()){
             if(memory.get(candidate) > 4){
-                return Command.move(countDistance(result.tanks,candidate) +
-                        countDistance(result.tanks,candidate) > 0 ?  -30 : 30
-                );
+                 commands[0] = Command.move(countDistance(result.tanks, candidate) +
+                                 countDistance(result.tanks, candidate) > 0 ? -31 : 31
+                 );
+
+                if(countDistance(result.tanks,candidate) < 0){
+                    commands[1] = Command.fire(-85,100);
+                } else {
+                    commands[1] = Command.fire(85,100);
+                }
             }
         }
-        return null;
+        return commands;
     }
 
     private double countDistance(List<Tank> tanks, Tank candidate) {
