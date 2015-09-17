@@ -13,10 +13,10 @@ public class ShotCalculator {
         double coeff = calculateShotPowerCoefficient(myPos, targetPos, hitPos);
     }
 
-    private static double calculateShotPowerCoefficient(Vector2 myPos, Vector2 targetPos, Vector2 hitPos) {
+    public static double calculateShotPowerCoefficient(Vector2 myPos, Vector2 targetPos, Vector2 hitPos) {
         double desiredDistance = targetPos.getX() - myPos.getX();
         double currentDistance = hitPos.getX() - myPos.getX();
 
-        return desiredDistance / currentDistance;
+        return currentDistance ==0 ? 0 : desiredDistance / currentDistance;
     }
 }
