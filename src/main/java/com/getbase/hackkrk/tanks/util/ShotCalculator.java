@@ -17,6 +17,6 @@ public class ShotCalculator {
         double desiredDistance = targetPos.getX() - myPos.getX();
         double currentDistance = hitPos.getX() - myPos.getX();
 
-        return desiredDistance / currentDistance;
+        return currentDistance ==0 ? 0 : desiredDistance / currentDistance;
     }
 }
