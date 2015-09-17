@@ -20,6 +20,7 @@ public class MichalCommander implements TacticalMoves {
     public Command generateCommand(TurnResult result) {
         try {
             Tank my = utils.getMyTank(result.tanks);
+            //result.outcome
         } catch (TankNotFoundException e) {
             e.printStackTrace();
         }
